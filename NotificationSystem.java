@@ -1,0 +1,8 @@
+//Going to use a decorator pattern to implement the notification system //
+// Will need to create a concrete implementaion for each type of notification (email. SMS, push notification))
+
+// Abstract class for the notification system //
+public abstract class NotificationSystem {
+    public abstract void sendNotification(String message);
+}
+
