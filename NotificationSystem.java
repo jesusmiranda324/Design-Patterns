@@ -57,9 +57,15 @@ class SMSNotification extends NotificationDecorator {
 }
 
 // Concrete implementation for Slack notification //
-class SlackNotification extends NotificationSystem {
-    @Override 
-    public void sendNotification(String message){
+class SlackNotification extends NotificationDecorator {
+    public SlackNotification(NotificationSystem notificationSystem) {
+        super(notificationSystem);
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        // Call the base notification system's sendNotification method
+        super.sendNotification(message);
         System.out.println("Sending Slack notification: " + message);
     }
 }
