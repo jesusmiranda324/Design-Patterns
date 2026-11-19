@@ -6,3 +6,10 @@ public abstract class NotificationSystem {
     public abstract void sendNotification(String message);
 }
 
+// Concrete implementation for basic notification //
+class BasicNotification extends NotificationSystem {
+    @Override 
+    public void sendNotification(String message){
+        System.out.println("Sending basic notification: " + message);
+    }
+}
