@@ -29,9 +29,15 @@ abstract class NotificationDecorator extends NotificationSystem {
 }
 
 // Concrete implementation for email notification //
-class EmailNotification extends NotificationSystem {
-    @Override 
-    public void sendNotification(String message){
+class EmailNotification extends NotificationDecorator {
+    public EmailNotification(NotificationSystem notificationSystem) {
+        super(notificationSystem);
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        // Call the base notification system's sendNotification method
+        super.sendNotification(message);
         System.out.println("Sending email notification: " + message);
     }
 }
