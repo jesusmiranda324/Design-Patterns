@@ -13,3 +13,11 @@ class BasicNotification extends NotificationSystem {
         System.out.println("Sending basic notification: " + message);
     }
 }
+
+// Concrete implementation for email notification //
+class EmailNotification extends NotificationSystem {
+    @Override 
+    public void sendNotification(String message){
+        System.out.println("Sending email notification: " + message);
+    }
+}
