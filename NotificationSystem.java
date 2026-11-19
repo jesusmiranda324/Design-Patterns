@@ -21,3 +21,10 @@ class EmailNotification extends NotificationSystem {
         System.out.println("Sending email notification: " + message);
     }
 }
+// Concrete implementation for SMS notification //
+class SMSNotification extends NotificationSystem {
+    @Override 
+    public void sendNotification(String message){
+        System.out.println("Sending SMS notification: " + message);
+    }
+}
