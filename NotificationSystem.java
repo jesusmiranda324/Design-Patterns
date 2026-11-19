@@ -13,6 +13,20 @@ class BasicNotification extends NotificationSystem {
         System.out.println("Sending basic notification: " + message);
     }
 }
+// Abstract decorator class for the notification system //
+// Wraps a notification system and adds additional functionality //
+abstract class NotificationDecorator extends NotificationSystem {
+    protected NotificationSystem notificationSystem;
+
+    public NotificationDecorator(NotificationSystem notificationSystem) {
+        this.notificationSystem = notificationSystem;
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        notificationSystem.sendNotification(message);
+    }
+}
 
 // Concrete implementation for email notification //
 class EmailNotification extends NotificationSystem {
