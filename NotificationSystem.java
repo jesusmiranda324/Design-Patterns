@@ -43,9 +43,15 @@ class EmailNotification extends NotificationDecorator {
 }
 
 // Concrete implementation for SMS notification //
-class SMSNotification extends NotificationSystem {
-    @Override 
-    public void sendNotification(String message){
+class SMSNotification extends NotificationDecorator {
+    public SMSNotification(NotificationSystem notificationSystem) {
+        super(notificationSystem);
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        // Call the base notification system's sendNotification method
+        super.sendNotification(message);
         System.out.println("Sending SMS notification: " + message);
     }
 }
