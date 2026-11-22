@@ -22,4 +22,12 @@ public class TextFormatter {
             return "<p>" + text + "</p>";
         }
     }
+
+    // The concrete strategy for Markdown formatting
+    public static class MarkdownFormatter implements Formatter {
+        @Override
+        public String format(String text) {
+            return "*" + text + "*";
+        }
+    }
 }
