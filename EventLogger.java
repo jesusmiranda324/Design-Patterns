@@ -3,6 +3,10 @@
 // Needs to provide a method to retrieve the log messages from the log file.
 // Needs to provide a method to clear the log messages from the log file.
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+
 public class EventLogger{
     // Creates single Instance
     private static EventLogger instance;
@@ -15,5 +19,15 @@ public class EventLogger{
         if (instance == null){
             instance = new EventLogger();
         }return instance;
+    }
+
+    // Method to log messages
+    public void logMessages(String message){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", true))){
+            writer.write(message);
+            writer.newLine();
+        }catch (IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
