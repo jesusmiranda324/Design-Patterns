@@ -14,4 +14,12 @@ public class TextFormatter {
             return text;
         }
     }
+
+    // The concrete strategy for HTML formatting
+    public static class HtmlFormatter implements Formatter {
+        @Override
+        public String format(String text) {
+            return "<p>" + text + "</p>";
+        }
+    }
 }
