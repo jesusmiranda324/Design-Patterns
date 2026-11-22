@@ -2,6 +2,7 @@
 // Needs to append the log messages to a log file.
 // Needs to provide a method to retrieve the log messages from the log file.
 // Needs to provide a method to clear the log messages from the log file.
+// Needs synchronized instance to prevent multithreading.
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +19,8 @@ public class EventLogger{
     private EventLogger(){}
 
     // Creates getInstance
-    public static EventLogger getInstance(){
+    // Added synchronized here to prevent two instances being created
+    public static synchronized EventLogger getInstance(){
         if (instance == null){
             instance = new EventLogger();
         }return instance;
@@ -32,7 +34,8 @@ public class EventLogger{
     }
 
     // Method to log messages and write to console 
-    public void logMessages(String message){
+    // Added synchronized here to prevent two writing attempts happening simultaneously
+    public synchronized void logMessages(String message){
         String time;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", true))){
             time = time();
@@ -47,7 +50,8 @@ public class EventLogger{
     }
 
     // Method to read logMessages
-    public String getLogMessages(){      
+    // Added synchronized here to prevent two getting attempts happening simultaneously
+    public synchronized String getLogMessages(){      
         StringBuilder history = new StringBuilder("");
         try (BufferedReader reader = new BufferedReader(new FileReader("logMessages.log"))) {
             String line;
@@ -62,12 +66,22 @@ public class EventLogger{
     }
 
     // Method to clear log file
-    public void clearLogMessages(){
+    // Added synchronized here to prevent two clearing attempts happening simultaneously
+    public synchronized void clearLogMessages(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", false))){
             writer.write("");
         }catch (IOException e){
             System.out.println("Error: " + e.getMessage());
         }
     }
-    
+
+    // Method to archive logMeassages
+    public synchronized void archiveLogMessages(){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("archivedLogMessages.log", true))){
+            writer.append(getLogMessages());
+            clearLogMessages();
+        }catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
