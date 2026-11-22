@@ -2,3 +2,8 @@
 // Needs to append the log messages to a log file.
 // Needs to provide a method to retrieve the log messages from the log file.
 // Needs to provide a method to clear the log messages from the log file.
+
+public class EventLogger{
+    private static EventLogger instance;
+
+    }
