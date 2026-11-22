@@ -47,4 +47,13 @@ public class EventLogger{
         }
         return history.toString();
     }
+
+    // Method to clear log file
+    public void clearLogMessages(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", false))){
+            writer.write("");
+        }catch (IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
