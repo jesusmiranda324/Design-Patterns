@@ -7,4 +7,11 @@ public class TextFormatter {
         String format(String text);
     }
     
+    // The concrete strategy for plain text formatting
+    public static class PlainTextFormatter implements Formatter {
+        @Override
+        public String format(String text) {
+            return text;
+        }
+    }
 }
