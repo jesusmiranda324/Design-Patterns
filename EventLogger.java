@@ -23,11 +23,13 @@ public class EventLogger{
         }return instance;
     }
 
-    // Method to log messages
+    // Method to log messages and write to console
     public void logMessages(String message){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", true))){
             writer.write(message);
             writer.newLine();
+            //added to write to console
+            System.out.println(message);
         }catch (IOException e){
             System.out.println("Error: " + e.getMessage());
         }
@@ -56,4 +58,5 @@ public class EventLogger{
             System.out.println("Error: " + e.getMessage());
         }
     }
+    
 }
