@@ -4,6 +4,16 @@
 // Needs to provide a method to clear the log messages from the log file.
 
 public class EventLogger{
+    // Creates single Instance
     private static EventLogger instance;
 
+    // Creates private constructor
+    private EventLogger(){}
+
+    // Creates getInstance
+    public static EventLogger getInstance(){
+        if (instance == null){
+            instance = new EventLogger();
+        }return instance;
     }
+}
