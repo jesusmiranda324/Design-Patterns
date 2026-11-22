@@ -6,6 +6,8 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class EventLogger{
     // Creates single Instance
@@ -29,5 +31,20 @@ public class EventLogger{
         }catch (IOException e){
             System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    // Method to read logMessages
+    public String getLogMessages(){      
+        StringBuilder history = new StringBuilder("");
+        try (BufferedReader reader = new BufferedReader(new FileReader("logMessages.log"))) {
+            String line;
+            while((line =reader.readLine()) != null){
+                history.append(line);
+                history.append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+          System.out.println("Error: " + e.getMessage());
+        }
+        return history.toString();
     }
 }
