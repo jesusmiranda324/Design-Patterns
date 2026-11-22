@@ -33,12 +33,14 @@ public class EventLogger{
 
     // Method to log messages and write to console 
     public void logMessages(String message){
+        String time;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", true))){
-            writer.write(time() + " ");
+            time = time();
+            writer.write(time + " ");
             writer.write(message);
             writer.newLine();
             //added to write to console
-            System.out.println(message);
+            System.out.println(time + " " + message);
         }catch (IOException e){
             System.out.println("Error: " + e.getMessage());
         }
