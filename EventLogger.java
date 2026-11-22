@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.time.LocalDateTime;
 
 public class EventLogger{
     // Creates single Instance
@@ -23,9 +24,17 @@ public class EventLogger{
         }return instance;
     }
 
-    // Method to log messages and write to console
+    // Method to get time//
+    public String time(){
+        LocalDateTime now = LocalDateTime.now();
+        String currentTime = now.toString();
+        return currentTime;
+    }
+
+    // Method to log messages and write to console 
     public void logMessages(String message){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("logMessages.log", true))){
+            writer.write(time() + " ");
             writer.write(message);
             writer.newLine();
             //added to write to console
